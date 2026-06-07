@@ -2,40 +2,53 @@
 @rendermode InteractiveServer
 @using BlazorFormApp.Models
 
-<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+<div class="page-wrapper">
+    <div class="form-card">
 
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+        <h3>User Registration</h3>
+        <p class="form-sub">Fields marked <span>*</span> are required.</p>
 
-    <div class="name-row">
-        <div class="fg">
-            <label>First name</label>
-            <InputText @bind-Value="model.FirstName" />
-            <ValidationMessage For="@(() => model.FirstName)" />
-        </div>
-        <div class="fg">
-            <label>Last name</label>
-            <InputText @bind-Value="model.LastName" />
-            <ValidationMessage For="@(() => model.LastName)" />
-        </div>
+        <EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="name-row">
+                <div class="fg">
+                    <label>First name <span class="req">*</span></label>
+                    <InputText @bind-Value="model.FirstName" />
+                    <ValidationMessage For="@(() => model.FirstName)" />
+                </div>
+                <div class="fg">
+                    <label>Last name <span class="req">*</span></label>
+                    <InputText @bind-Value="model.LastName" />
+                    <ValidationMessage For="@(() => model.LastName)" />
+                </div>
+            </div>
+
+            <div class="fg">
+                <label>Email address <span class="req">*</span></label>
+                <InputText @bind-Value="model.Email" type="email" />
+                <ValidationMessage For="@(() => model.Email)" />
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Registration</button>
+
+        </EditForm>
+
+        @if (isSubmitted)
+        {
+            <div class="success-box">
+                <div class="success-icon">✔</div>
+                <div class="success-title">Registration Successful!</div>
+                <div class="success-detail">
+                    Welcome, @model.FirstName! A confirmation has been sent to @model.Email.
+                </div>
+            </div>
+        }
+
     </div>
-
-    <div class="fg">
-        <label>Email address</label>
-        <InputText @bind-Value="model.Email" type="email" />
-        <ValidationMessage For="@(() => model.Email)" />
-    </div>
-
-    <button type="submit">Submit registration</button>
-
-</EditForm>
-
-@if (isSubmitted)
-{
-    <div class="success-box">
-        <p>Registration successful! Welcome, @model.FirstName!</p>
-    </div>
-}
+</div>
 
 @code {
     private UserModel model = new();
@@ -43,7 +56,6 @@
 
     private void HandleValidSubmit()
     {
-        // Only fires when ALL validation passes
         isSubmitted = true;
     }
 }
