@@ -36,3 +36,226 @@ h1:focus {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+/* =============================================
+   BLAZOR FORM VALIDATION APP — app.css
+   Application 2: Registration Form Styles
+   ============================================= */
+
+/* ---------- Page Layout ---------- */
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 3rem 1rem;
+    background-color: #f5f5f5;
+}
+
+/* ---------- Form Card Container ---------- */
+.form-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+    /* ---------- Form Heading ---------- */
+    .form-card h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1a1a2e;
+        margin-bottom: 4px;
+    }
+
+    .form-card .form-sub {
+        font-size: 13px;
+        color: #6b7280;
+        margin-bottom: 1.5rem;
+    }
+
+        .form-card .form-sub span {
+            color: #dc2626;
+        }
+
+/* ---------- Two-Column Name Row ---------- */
+.name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+/* ---------- Form Group (label + input + message) ---------- */
+.fg {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+    .fg label {
+        font-size: 13px;
+        font-weight: 500;
+        color: #374151;
+        margin-bottom: 5px;
+    }
+
+        .fg label .req {
+            color: #dc2626;
+            margin-left: 2px;
+        }
+
+    /* ---------- InputText (Blazor component renders as <input>) ---------- */
+    .fg input,
+    .fg .valid.modified,
+    .fg .invalid.modified {
+        width: 100%;
+        padding: 9px 12px;
+        font-size: 14px;
+        font-family: inherit;
+        border: 1.5px solid #d1d5db;
+        border-radius: 8px;
+        background-color: #ffffff;
+        color: #111827;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+        .fg input:focus {
+            border-color: #512BD4;
+            box-shadow: 0 0 0 3px rgba(81, 43, 212, 0.12);
+        }
+
+        /* ---------- Blazor Auto-applied Validation CSS Classes ---------- */
+
+        /* Valid state — Blazor adds class "valid modified" to InputText */
+        .fg input.valid.modified {
+            border-color: #16a34a;
+            background-color: #f0fdf4;
+        }
+
+        /* Invalid state — Blazor adds class "invalid modified" to InputText */
+        .fg input.invalid.modified {
+            border-color: #dc2626;
+            background-color: #fff5f5;
+        }
+
+/* ---------- ValidationMessage (per-field error text) ---------- */
+.validation-message {
+    font-size: 12px;
+    color: #b91c1c;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ---------- ValidationSummary (top-level error list) ---------- */
+.validation-errors {
+    background-color: #fef2f2;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 1rem;
+    font-size: 13px;
+    color: #991b1b;
+}
+
+    .validation-errors ul {
+        margin: 0;
+        padding-left: 1.2rem;
+    }
+
+    .validation-errors li {
+        margin-bottom: 3px;
+    }
+
+/* ---------- Submit Button ---------- */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    margin-top: 0.5rem;
+    background-color: #512BD4;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+    .submit-btn:hover {
+        background-color: #4221B0;
+    }
+
+    .submit-btn:active {
+        transform: scale(0.98);
+    }
+
+    .submit-btn:disabled {
+        background-color: #e5e7eb;
+        color: #9ca3af;
+        border: 1px solid #d1d5db;
+        cursor: not-allowed;
+    }
+
+/* ---------- Success Message Box ---------- */
+.success-box {
+    background-color: #f0fdf4;
+    border: 1.5px solid #86efac;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+    .success-box .success-icon {
+        font-size: 40px;
+        color: #16a34a;
+        margin-bottom: 10px;
+    }
+
+    .success-box .success-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #14532d;
+        margin-bottom: 5px;
+    }
+
+    .success-box .success-detail {
+        font-size: 13px;
+        color: #166534;
+        margin-bottom: 1rem;
+    }
+
+/* ---------- Reset Button (inside success box) ---------- */
+.reset-btn {
+    padding: 8px 20px;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    color: #374151;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+    .reset-btn:hover {
+        background-color: #f3f4f6;
+    }
+
+/* ---------- Responsive: Stack name row on small screens ---------- */
+@media (max-width: 480px) {
+    .name-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card {
+        padding: 1.25rem;
+    }
+}
